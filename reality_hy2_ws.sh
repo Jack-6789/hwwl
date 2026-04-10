@@ -324,15 +324,12 @@ proxy-groups:
       - 自动选择
       - Reality
       - Hysteria2
-      - Vmess
-      - DIRECT
 
   - name: 自动选择
     type: url-test
     proxies:
       - Reality
       - Hysteria2
-      - Vmess
     url: "http://www.gstatic.com/generate_204"
     interval: 300
     tolerance: 50
