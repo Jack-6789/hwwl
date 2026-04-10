@@ -14,29 +14,7 @@
 - Bash shell
 - Internet connection
 
-## 使用教程
-连接上之后，我们需要进行更新软件包列表并安装 curl 工具。：
 
-CentOS系统和Fedora系统：
-```
-centos：yum update -y
-```
-```
-yum install curl -y
-```
-
-Debian系统和ubuntu系统：
-```
-apt-get update -y
-```
-```
-apt-get install curl -y
-```
-
-### reality和hysteria2 wss三合一脚本
-```bash
-bash <(curl -fsSL https://github.com/Jack-6789/hwwl/raw/main/reality_hy2_ws.sh)
-```
 
 
 |项目||
