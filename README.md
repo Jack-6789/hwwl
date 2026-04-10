@@ -26,8 +26,12 @@ yum install curl -y
 ```
 
 Debian系统和ubuntu系统：
+```
 apt-get update -y
+```
+```
 apt-get install curl -y
+```
 
 ### reality和hysteria2 wss三合一脚本
 ```bash
