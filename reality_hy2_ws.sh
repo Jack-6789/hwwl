@@ -796,6 +796,100 @@ argo=$(cat argo.log | grep trycloudflare.com | awk 'NR==2{print}' | awk -F// '{p
 echo "$argo" | base64 > /root/sbox/argo.txt.b64
 rm -rf argo.log
 
+
+# Retrieve the server IP address
+server_ip=$(curl -s4m8 ip.sb -k) || server_ip=$(curl -s6m8 ip.sb -k)
+
+# Create reality.json using jq
+jq -n --arg listen_port "$listen_port" --arg vmess_port "$vmess_port" --arg vmess_uuid "$vmess_uuid"  --arg ws_path "$ws_path" --arg server_name "$server_name" --arg private_key "$private_key" --arg short_id "$short_id" --arg uuid "$uuid" --arg hy_listen_port "$hy_listen_port" --arg hy_password "$hy_password" --arg server_ip "$server_ip" '{
+  "log": {
+    "disabled": false,
+    "level": "info",
+    "timestamp": true
+  },
+  "inbounds": [
+    {
+      "type": "vless",
+      "tag": "vless-in",
+      "listen": "::",
+      "listen_port": ($listen_port | tonumber),
+      "users": [
+        {
+          "uuid": $uuid,
+          "flow": "xtls-rprx-vision"
+        }
+      ],
+      "tls": {
+        "enabled": true,
+        "server_name": $server_name,
+        "reality": {
+          "enabled": true,
+          "handshake": {
+            "server": $server_name,
+            "server_port": 443
+          },
+          "private_key": $private_key,
+          "short_id": [$short_id]
+        }
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "hy2-in", 
+      "listen": "::",
+      "listen_port": ($hy_listen_port | tonumber),
+      "users": [
+        {
+          "password": $hy_password
+        }
+      ],
+      "tls": {
+        "enabled": true,
+        "alpn": ["h3"],
+        "certificate_path": "/root/self-cert/cert.pem",
+        "key_path": "/root/self-cert/private.key"
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "vmess-in",
+      "listen": "::",
+      "listen_port": ($vmess_port | tonumber),
+      "users": [
+        {
+          "uuid": $vmess_uuid,
+          "alterId": 0
+        }
+      ],
+      "transport": {
+        "type": "ws",
+        "path": $ws_path
+      }
+    }
+  ],
+  "outbounds": [
+    {
+      "type": "direct",
+      "tag": "direct"
+    }
+  ],
+  "route": {
+    "rules": [
+      {
+        "protocol": "dns",
+        "action": "hijack-dns"
+      },
+      {
+        "inbound": ["vless-in", "hy2-in", "vmess-in"],
+        "action": "direct"
+      }
+    ],
+    "final": "direct"
+  }
+}' > /root/sbox/sbconfig_server.json
+
+
+
 # Create sing-box.service
 cat > /etc/systemd/system/sing-box.service <<EOF
 [Unit]
