@@ -1,5 +1,5 @@
 # 简介
-- Reality Hysteria2 vmess ws一键安装脚本
+- Ry H2 vs ws一键安装脚本
   
 ## 功能
 
