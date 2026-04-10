@@ -773,7 +773,7 @@ echo "开始配置vmess"
 echo ""
 # Generate hysteria necessary values
 vmess_uuid=$(/root/sbox/sing-box generate uuid)
-read -p "请输入vmess端口，默认15555，回车: " vmess_port
+read -p "请输入vmess端口 (默认15555，回车): " vmess_port
 vmess_port=${vmess_port:-15555}
 echo ""
 read -p "ws路径 (默认随机生成，回车): " ws_path
