@@ -326,7 +326,7 @@ proxy-groups:
       - Hysteria2
 
   - name: 自动选择
-    type: url-test
+    type: url-test #选出延迟最低的节点
     proxies:
       - Reality
       - Hysteria2
