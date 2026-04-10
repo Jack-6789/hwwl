@@ -743,11 +743,11 @@ short_id=$(/root/sbox/sing-box generate rand --hex 8)
 echo "uuid和短id 生成完成"
 echo ""
 # Ask for listen port
-read -p "请输入Reality端口 (default: 8888): " listen_port
+read -p "请输入Reality端口 (默认8888，回车): " listen_port
 listen_port=${listen_port:-8888}
 echo ""
 # Ask for server name (sni)
-read -p "请输入想要使用的域名 (default: itunes.apple.com): " server_name
+read -p "请输入想要使用的域名 (默认itunes.apple.com，回车): " server_name
 server_name=${server_name:-itunes.apple.com}
 echo ""
 # hysteria2
@@ -757,12 +757,12 @@ echo ""
 hy_password=$(/root/sbox/sing-box generate rand --hex 8)
 
 # Ask for listen port
-read -p "请输入hysteria2监听端口 (default: 8443): " hy_listen_port
+read -p "请输入hysteria2监听端口 (默认8443，回车): " hy_listen_port
 hy_listen_port=${hy_listen_port:-8443}
 echo ""
 
 # Ask for self-signed certificate domain
-read -p "输入自签证书域名 (default: bing.com): " hy_server_name
+read -p "输入自签证书域名 (默认bing.com，回车): " hy_server_name
 hy_server_name=${hy_server_name:-bing.com}
 mkdir -p /root/self-cert/ && openssl ecparam -genkey -name prime256v1 -out /root/self-cert/private.key && openssl req -new -x509 -days 36500 -key /root/self-cert/private.key -out /root/self-cert/cert.pem -subj "/CN=${hy_server_name}"
 echo ""
@@ -773,10 +773,10 @@ echo "开始配置vmess"
 echo ""
 # Generate hysteria necessary values
 vmess_uuid=$(/root/sbox/sing-box generate uuid)
-read -p "请输入vmess端口，默认为15555: " vmess_port
+read -p "请输入vmess端口，默认15555，回车: " vmess_port
 vmess_port=${vmess_port:-15555}
 echo ""
-read -p "ws路径 (默认随机生成): " ws_path
+read -p "ws路径 (默认随机生成，回车): " ws_path
 ws_path=${ws_path:-$(/root/sbox/sing-box generate rand --hex 6)}
 
 pid=$(pgrep -f cloudflared)
