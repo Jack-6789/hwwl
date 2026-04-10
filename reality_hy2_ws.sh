@@ -156,6 +156,32 @@ show_client_configuration() {
   echo "$server_link"
   echo ""
   echo ""
+  # Print the server details
+  
+  # Get current listen port
+  hy_current_listen_port=$(jq -r '.inbounds[1].listen_port' /root/sbox/sbconfig_server.json)
+  # Get current server name
+  hy_current_server_name=$(openssl x509 -in /root/self-cert/cert.pem -noout -subject -nameopt RFC2253 | awk -F'=' '{print $NF}')
+  # Get the password
+  hy_password=$(jq -r '.inbounds[1].users[0].password' /root/sbox/sbconfig_server.json)
+  # Generate the link
+  
+  hy2_server_link="hysteria2://$hy_password@$server_ip:$hy_current_listen_port?insecure=1&sni=$hy_current_server_name#Hysteria2-$server_ip"
+
+  show_notice "Hysteria2 客户端通用链接" 
+  echo ""
+  echo "官方 hysteria2通用链接格式"
+  echo ""
+  echo "$hy2_server_link"
+  echo ""
+  echo ""   
+  # Print the server details
+  show_notice "Hysteria2 客户端通用参数" 
+
+  show_notice "Hysteria2 客户端yaml文件" 
+cat << EOF
+
+
 EOF
 
   argo=$(base64 --decode /root/sbox/argo.txt.b64)
