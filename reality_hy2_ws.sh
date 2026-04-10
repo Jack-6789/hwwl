@@ -150,7 +150,7 @@ show_client_configuration() {
   show_notice "Reality 客户端通用链接" 
   echo ""
   echo ""
-  server_link="vless://$uuid@$server-ip:$current_listen_port?encryption=none&flow=xtls-rprx-vision&security=reality&sni=$current_server_name&fp=chrome&pbk=$public_key&sid=$short_id&type=tcp&headerType=none#SING-BOX-Reality"
+  server_link="vless://$uuid@$server_ip:$current_listen_port?encryption=none&flow=xtls-rprx-vision&security=reality&sni=$current_server_name&fp=chrome&pbk=$public_key&sid=$short_id&type=tcp&headerType=none#SING-BOX-Reality"
   echo ""
   echo ""
   echo "$server_link"
