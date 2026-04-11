@@ -330,7 +330,7 @@ proxy-groups:
     proxies:
       - Reality
       - Hysteria2
-    url: "http://www.gstatic.com/generate_204"
+    url: "https://www.google.cn"
     interval: 300
     tolerance: 50
 
