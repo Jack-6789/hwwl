@@ -318,7 +318,7 @@ proxies:
         Host: $argo
 
 proxy-groups:
-  - name: 节点选择
+  - name: 线路选择
     type: select
     proxies:
       - 自动选择
@@ -326,7 +326,7 @@ proxy-groups:
       - Hysteria2
 
   - name: 自动选择
-    type: url-test #选出延迟最低的节点
+    type: url-test #选出延迟最低的线路
     proxies:
       - Reality
       - Hysteria2
@@ -338,7 +338,7 @@ proxy-groups:
 rules:
     - GEOIP,LAN,DIRECT
     - GEOIP,CN,DIRECT
-    - MATCH,节点选择
+    - MATCH,线路选择
 
 EOF
 
