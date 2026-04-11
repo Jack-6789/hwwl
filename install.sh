@@ -212,8 +212,8 @@ proxies:
     server: $server_ip
     port: $hy_current_listen_port
     #  up和down均不写或为0则使用BBR流控
-    # up: "50 Mbps" # 若不写单位，默认为 Mbps
-    # down: "500 Mbps" # 若不写单位，默认为 Mbps
+    # up: "0 Mbps" # 若不写单位，默认为 Mbps
+    # down: "0 Mbps" # 若不写单位，默认为 Mbps
     password: $hy_password
     sni: $hy_current_server_name
     skip-cert-verify: true
@@ -222,20 +222,19 @@ proxies:
       - h3
 
 proxy-groups:
-  - name: 节点选择
+  - name: 线路选择
     type: select
     proxies:
       - 自动选择
       - Reality
       - Hysteria2
-      - DIRECT
 
   - name: 自动选择
-    type: url-test #选出延迟最低的机场节点
+    type: url-test #选出延迟最低的线路
     proxies:
       - Reality
       - Hysteria2
-    url: "http://www.gstatic.com/generate_204"
+    url: "https://www.google.cn"
     interval: 300
     tolerance: 50
 
@@ -243,7 +242,7 @@ proxy-groups:
 rules:
     - GEOIP,LAN,DIRECT
     - GEOIP,CN,DIRECT
-    - MATCH,节点选择
+    - MATCH,线路选择
 
 EOF
 
