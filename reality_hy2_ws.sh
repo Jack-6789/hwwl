@@ -150,7 +150,7 @@ show_client_configuration() {
   show_notice "Reality 客户端通用链接" 
   echo ""
   echo ""
-  server_link="vless://$uuid@$server_ip:$current_listen_port?encryption=none&flow=xtls-rprx-vision&security=reality&sni=$current_server_name&fp=chrome&pbk=$public_key&sid=$short_id&type=tcp&headerType=none#Reality-$server_ip"
+  server_link="vless://$uuid@$server_ip:$current_listen_port?encryption=none&flow=xtls-rprx-vision&security=reality&sni=$current_server_name&fp=chrome&pbk=$public_key&sid=$short_id&type=tcp&headerType=none#VLESS-$server_ip"
   echo ""
   echo ""
   echo "$server_link"
@@ -272,7 +272,7 @@ dns:
       - 240.0.0.0/4
 
 proxies:        
-  - name: Reality
+  - name: VLESS
     type: vless
     server: $server_ip
     port: $current_listen_port
@@ -322,13 +322,13 @@ proxy-groups:
     type: select
     proxies:
       - 自动选择
-      - Reality
+      - VLESS
       - Hysteria2
 
   - name: 自动选择
     type: url-test #选出延迟最低的线路
     proxies:
-      - Reality
+      - VLESS
       - Hysteria2
     url: "https://www.google.cn"
     interval: 300
