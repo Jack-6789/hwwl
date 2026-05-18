@@ -118,7 +118,7 @@ show_client_configuration() {
   show_notice "Reality 客户端通用链接" 
   echo ""
   echo ""
-  server_link="vless://$uuid@$server_ip:$current_listen_port?encryption=none&flow=xtls-rprx-vision&security=reality&sni=$current_server_name&fp=chrome&pbk=$public_key&sid=$short_id&type=tcp&headerType=none#VLESS"
+  server_link="vless://$uuid@$server_ip:$current_listen_port?encryption=none&flow=xtls-rprx-vision&security=reality&sni=$current_server_name&fp=chrome&pbk=$public_key&sid=$short_id&type=tcp&headerType=none#VLESS-$server_ip"
   echo ""
   echo ""
   echo "$server_link"
@@ -143,7 +143,7 @@ show_client_configuration() {
   # Get the password
   hy_password=$(jq -r '.inbounds[1].users[0].password' /root/sbconfig_server.json)
   # Generate the link
-  hy_server_link="hy2://$hy_password@$server_ip:$hy_current_listen_port?insecure=1&sni=$hy_current_server_name#Hysteria2"
+  hy_server_link="hy2://$hy_password@$server_ip:$hy_current_listen_port?insecure=1&sni=$hy_current_server_name#Hysteria2-$server_ip"
   show_notice "Hysteria2 客户端通用链接" 
   echo ""
   echo ""
