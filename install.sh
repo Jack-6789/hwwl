@@ -192,7 +192,7 @@ dns:
       - 240.0.0.0/4
 
 proxies:        
-  - name: Reality
+  - name: VLESS
     type: vless
     server: $server_ip
     port: $current_listen_port
