@@ -147,7 +147,7 @@ show_client_configuration() {
   server_ip=$(curl -s4m8 ip.sb -k) || server_ip=$(curl -s6m8 ip.sb -k)
   echo ""
   echo ""
-  show_notice "Reality 客户端通用链接" 
+  show_notice "VLESS 通用链接" 
   echo ""
   echo ""
   server_link="vless://$uuid@$server_ip:$current_listen_port?encryption=none&flow=xtls-rprx-vision&security=reality&sni=$current_server_name&fp=chrome&pbk=$public_key&sid=$short_id&type=tcp&headerType=none#VLESS-$server_ip"
@@ -178,7 +178,7 @@ show_client_configuration() {
   
   hy2_server_link="hysteria2://$hy_password@$server_ip:$hy_current_listen_port?insecure=1&sni=$hy_current_server_name#Hysteria2-$server_ip"
 
-  show_notice "Hysteria2 客户端通用链接" 
+  show_notice "Hysteria2 通用链接" 
   echo ""
   echo "官方 hysteria2通用链接格式"
   echo ""
@@ -240,7 +240,7 @@ EOF
   echo -e "端口 80 可改为 8080 8880 2052 2082 2086 2095" 
   echo ""
   echo ""
-  show_notice "clash-meta配置参数"
+  show_notice "Clash配置参数"
 cat << EOF
 
 port: 7890
