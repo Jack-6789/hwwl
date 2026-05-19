@@ -299,23 +299,6 @@ proxies:
     skip-cert-verify: true
     alpn:
       - h3
-  - name: Vmess
-    type: vmess
-    server: speed.cloudflare.com
-    port: 443
-    uuid: $vmess_uuid
-    alterId: 0
-    cipher: auto
-    udp: true
-    tls: true
-    client-fingerprint: chrome  
-    skip-cert-verify: true
-    servername: $argo
-    network: ws
-    ws-opts:
-      path: $ws_path
-      headers:
-        Host: $argo
 
 proxy-groups:
   - name: 线路选择
