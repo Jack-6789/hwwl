@@ -4,9 +4,6 @@
 ## 功能
 
 - 无脑回车一键安装或者自定义安装
-- 完全无需域名，使用自签证书部署hy2，使用cloudflared tunnel支持vmess ws优选ip
-- 支持修改reality端口号和域名，hysteria2端口号
-- 无脑生成sing-box，clash，v2rayN，nekoray等通用链接格式
 
 ## 需求
 
