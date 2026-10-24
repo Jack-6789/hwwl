@@ -410,4 +410,6 @@ jq -n \
   }
 }' > /root/sbox/sbconfig_server.json
 
-cat > /etc
+cat > /etc/systemd/system/sing-box.service <<EOF
+[Unit]
+Description=Sing
