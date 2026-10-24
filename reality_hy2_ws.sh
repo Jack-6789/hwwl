@@ -595,19 +595,19 @@ jq -n --arg listen_port "$listen_port" --arg vmess_port "$vmess_port" --arg vmes
       "tag": "direct"
     }
   ],
-  "route": {
-    "rules": [
-      {
-        "protocol": "dns",
-        "action": "hijack-dns"
-      },
-      {
-        "inbound": ["vless-in", "hy2-in", "vmess-in"],
-        "action": "direct"
-      }
-    ],
-    "final": "direct"
-  }
+"route": {
+  "rules": [
+    {
+      "protocol": "dns",
+      "outbound": "dns-out"
+    },
+    {
+      "inbound": ["vless-in", "hy2-in", "vmess-in"],
+      "outbound": "direct"
+    }
+  ],
+  "final": "direct"
+}
 }' > /root/sbox/sbconfig_server.json
 
 
